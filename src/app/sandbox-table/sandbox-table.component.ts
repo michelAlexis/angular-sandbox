@@ -4,12 +4,12 @@ import { MatTableModule } from '@angular/material/table';
 import { TableModule } from 'primeng/table';
 import { Observable, delay, map, of, shareReplay, startWith } from 'rxjs';
 import { OrPipe } from 'src/shared/directives/or.directive';
-import { Product } from '../product.model';
 import { CdkTableRowTemplateDirective } from './utils/cdk.utils';
 import { MatTableRowTemplateDirective } from './utils/material.utls';
 import { NgTableRowTemplateDirective } from './utils/primeng.utils';
-import { AmiTableComponentModule } from './table.component';
+import { AmiTableComponentModule } from './custom-table.component';
 import { CommonModule } from '@angular/common';
+import { Product } from '@/model/product.model';
 
 @Component({
   selector: 'app-sandbox-table',
@@ -28,7 +28,7 @@ import { CommonModule } from '@angular/common';
     CdkTableRowTemplateDirective,
   ],
 })
-export class SandboxTableComponent {
+export default class SandboxTableComponent {
   values$: Observable<Product[]> = of([
     {
       id: '1000',
@@ -53,7 +53,7 @@ export class SandboxTableComponent {
   ]).pipe(delay(2000), shareReplay(1));
 
   loading$ = this.values$.pipe(
-    map((list) => list.length == 0),
+    map((list) => !list || list.length == 0),
     startWith(true)
   );
 

@@ -16,11 +16,12 @@ import { TableRowTemplateContext } from './table.utils';
 export class NgTableRowTemplateDirective<
   TItem extends object
 > extends PrimeTemplate {
-  @Input('pTableRow') data!:
+  @Input('pTableRow') data?:
     | TItem[]
     | Observable<TItem[]>
     | Promise<TItem[]>
-    | null;
+    | null
+    | '';
 
   constructor(template: TemplateRef<any>) {
     super(template);

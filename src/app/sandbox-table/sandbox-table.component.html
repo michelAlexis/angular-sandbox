@@ -1,5 +1,5 @@
-<div>
-  <h2 class="text-3xl font-bold">AMI</h2>
+<div class="m-3 p-3 rounded-xl bg-slate-300">
+  <h2 class="text-3xl font-semibold">AMI</h2>
   <ami-table [data]="values$ | async">
     <ng-template appTableHeader>
       <th>Code</th>
@@ -17,8 +17,8 @@
   </ami-table>
 </div>
 
-<div>
-  <h2 class="text-3xl font-bold">UTILS</h2>
+<div class="m-3 p-3 rounded-xl bg-slate-300">
+  <h2 class="text-3xl font-semibold">UTILS</h2>
   <p-table [value]="values$ | async | or: []" [loading]="loading$ | async | or: false">
     <ng-template pTemplate="header">
       <tr>
@@ -46,8 +46,8 @@
   </p-table>
 </div>
 
-<div>
-  <h2 class="text-3xl font-bold">REF primeNg</h2>
+<div class="m-3 p-3 rounded-xl bg-slate-300">
+  <h2 class="text-3xl font-semibold">REF primeNg</h2>
   <p-table [value]="values$ | async | or: []" [loading]="loading$ | async | or: false">
     <ng-template pTemplate="header">
       <tr>
@@ -68,8 +68,8 @@
   </p-table>
 </div>
 
-<div>
-  <h2 class="text-3xl font-bold">Material</h2>
+<div class="m-3 p-3 rounded-xl bg-slate-300">
+  <h2 class="text-3xl font-semibold">Material</h2>
   <table mat-table [dataSource]="values$ | async | or: []">
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -99,8 +99,8 @@
   </table>
 </div>
 
-<div>
-  <h2 class="text-3xl font-bold">CDK</h2>
+<div class="m-3 p-3 rounded-xl bg-slate-300">
+  <h2 class="text-3xl font-semibold">CDK</h2>
   <table cdk-table [dataSource]="values$ | async | or: []" class="w-full">
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->

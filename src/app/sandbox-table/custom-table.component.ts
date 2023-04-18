@@ -7,7 +7,6 @@ import {
   NgModule,
   TemplateRef,
 } from '@angular/core';
-import { PrimeTemplate } from 'primeng/api';
 
 interface TableHeaderTemplateContext<TItem extends object> {
   $implicit: TItem[];
@@ -84,7 +83,7 @@ export class TableRowTemplateDirective<TItem extends object> {
     </ng-template>
   `,
 })
-export class TableComponent<TItem extends object> {
+export class CustomTableComponent<TItem extends object> {
   @Input() data!: TItem[] | null;
   @ContentChild(TableHeaderTemplateDirective, { read: TemplateRef })
   headers?: TemplateRef<any>;
@@ -95,12 +94,12 @@ export class TableComponent<TItem extends object> {
 @NgModule({
   imports: [CommonModule],
   declarations: [
-    TableComponent,
+    CustomTableComponent,
     TableHeaderTemplateDirective,
     TableRowTemplateDirective,
   ],
   exports: [
-    TableComponent,
+    CustomTableComponent,
     TableHeaderTemplateDirective,
     TableRowTemplateDirective,
   ],
