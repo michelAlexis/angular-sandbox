@@ -1,0 +1,131 @@
+<div>
+  <h2 class="text-3xl font-bold">AMI</h2>
+  <ami-table [data]="values$ | async">
+    <ng-template appTableHeader>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Price</th>
+    </ng-template>
+
+    <ng-template [appTableRow]="values$ | async" let-product>
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.price }}</td>
+    </ng-template>
+  </ami-table>
+</div>
+
+<div>
+  <h2 class="text-3xl font-bold">UTILS</h2>
+  <p-table [value]="values$ | async | or: []" [loading]="loading$ | async | or: false">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+      </tr>
+    </ng-template>
+    <!-- <ng-template [pTableRow]="values$" let-product>
+      <tr>
+        <td>{{ product.code }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.price }}</td>
+      </tr>
+    </ng-template> -->
+
+      <tr *pTableRow="values$; let product">
+        <td>{{ product.code }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.price }}</td>
+      </tr>
+  </p-table>
+</div>
+
+<div>
+  <h2 class="text-3xl font-bold">REF primeNg</h2>
+  <p-table [value]="values$ | async | or: []" [loading]="loading$ | async | or: false">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>{{ product.code }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.price }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<div>
+  <h2 class="text-3xl font-bold">Material</h2>
+  <table mat-table [dataSource]="values$ | async | or: []">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef class="bg-slate-200">Code</th>
+      <td mat-cell *matCellDef="values$; let product">{{ product.code }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="values$; let product">{{ product.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef>Category</th>
+      <td mat-cell *matCellDef="values$; let product">{{ product.category }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <td mat-cell *matCellDef="values$; let product">{{ product.price }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+
+<div>
+  <h2 class="text-3xl font-bold">CDK</h2>
+  <table cdk-table [dataSource]="values$ | async | or: []" class="w-full">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container cdkColumnDef="code">
+      <th cdk-header-cell *cdkHeaderCellDef class="bg-slate-100 p-4 border-stone-200 border-b text-left">Code</th>
+      <td cdk-cell *cdkCellDef="values$; let product" class="p-4 border-stone-200 border-b">{{ product.code }}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="name">
+      <th cdk-header-cell *cdkHeaderCellDef class="bg-slate-100 p-4 border-stone-200 border-b text-left">Name</th>
+      <td cdk-cell *cdkCellDef="values$; let product" class="p-4 border-stone-200 border-b">{{ product.name }}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="category">
+      <th cdk-header-cell *cdkHeaderCellDef class="bg-slate-100 p-4 border-stone-200 border-b text-left">Category</th>
+      <td cdk-cell *cdkCellDef="values$; let product" class="p-4 border-stone-200 border-b">{{ product.category }}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="price">
+      <th cdk-header-cell *cdkHeaderCellDef class="bg-slate-100 p-4 border-stone-200 border-b text-left">Price</th>
+      <td cdk-cell *cdkCellDef="values$; let product" class="p-4 border-stone-200 border-b">{{ product.price }}</td>
+    </ng-container>
+
+    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
