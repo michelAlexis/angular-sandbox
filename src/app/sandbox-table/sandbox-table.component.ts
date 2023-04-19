@@ -1,15 +1,15 @@
+import { Product } from '@/types/product';
+import { EuroPipe } from '@/shared/pipes/euro.pipe';
 import { CdkTableModule } from '@angular/cdk/table';
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { TableModule } from 'primeng/table';
-import { Observable, delay, map, of, shareReplay, startWith } from 'rxjs';
+import { Observable, delay, map, of, shareReplay } from 'rxjs';
 import { OrPipe } from 'src/shared/directives/or.directive';
+import { AmiTableComponentModule } from './custom-table.component';
+import { SandboxTablePrimeNgComponent } from './primeng/primeng-table.component';
 import { CdkTableRowTemplateDirective } from './utils/cdk.utils';
 import { MatTableRowTemplateDirective } from './utils/material.utls';
-import { NgTableRowTemplateDirective } from './utils/primeng.utils';
-import { AmiTableComponentModule } from './custom-table.component';
-import { CommonModule } from '@angular/common';
-import { Product } from '@/model/product.model';
 
 @Component({
   selector: 'app-sandbox-table',
@@ -18,44 +18,42 @@ import { Product } from '@/model/product.model';
   standalone: true,
   imports: [
     CommonModule,
-    TableModule,
     AmiTableComponentModule,
-    NgTableRowTemplateDirective,
+    SandboxTablePrimeNgComponent,
     MatTableModule,
     MatTableRowTemplateDirective,
-    OrPipe,
     CdkTableModule,
     CdkTableRowTemplateDirective,
+    OrPipe,
+    EuroPipe,
   ],
 })
 export default class SandboxTableComponent {
-  values$: Observable<Product[]> = of([
-    {
-      id: '1000',
-      code: 'f230fh0g3',
-      name: 'Bamboo Watch',
-      description: 'Product Description',
-      imageUrl: 'bamboo-watch.jpg',
-      price: 65,
-      category: 'Food',
-      createAt: new Date().toISOString(),
-    },
-    {
-      id: '1001',
-      code: 'f230fh0g3',
-      name: 'AMI banana',
-      description: 'Product Description',
-      imageUrl: 'bamboo-watch.jpg',
-      price: 42,
-      category: 'Fruit',
-      createAt: new Date().toISOString(),
-    },
-  ]).pipe(delay(2000), shareReplay(1));
+  values$: Observable<Product[]> = of(this.generateFakeData(10)).pipe(delay(0), shareReplay(1));
 
-  loading$ = this.values$.pipe(
-    map((list) => !list || list.length == 0),
-    startWith(true)
-  );
+  loading$ = this.values$.pipe(map((list) => !list || list.length == 0));
 
   displayedColumns = ['code', 'name', 'category', 'price'];
+
+
+  generateFakeData(count: number): Product[] {
+    const list = new Array<Product>(count);
+
+    for (let i = 0; i < count; i++) {
+      const createAt = new Date();
+      createAt.setDate(i % 30);
+      list[i] = {
+        id: `id-${i + 1}`,
+        code: `asdhfkj${i}`,
+        name: `Product ${i + 1}`,
+        description: `Super longue description`,
+        imageUrl: ``,
+        price: Math.random() * 100,
+        category: `Categorie`,
+        createAt: createAt.toISOString(),
+      };
+    }
+
+    return list;
+  }
 }

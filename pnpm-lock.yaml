@@ -36,6 +36,7 @@ specifiers:
   ts-node: ~10.9.0
   tslib: ^2.3.0
   typescript: ~4.9.3
+  zod: ^3.21.4
   zone.js: ~0.12.0
 
 dependencies:
@@ -54,6 +55,7 @@ dependencies:
   primeng: 15.3.0_7dbr3be6mjrzmriwfyh4lj6uia
   rxjs: 7.8.0
   tslib: 2.5.0
+  zod: 3.21.4
   zone.js: 0.12.0
 
 devDependencies:
@@ -8575,6 +8577,10 @@ packages:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
     dev: true
+
+  /zod/3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+    dev: false
 
   /zone.js/0.12.0:
     resolution: {integrity: sha512-XtC+I5dXU14HrzidAKBNMqneIVUykLEAA1x+v4KVrd6AUPWlwYORF8KgsVqvgdHiKZ4BkxxjvYi/ksEixTPR0Q==}
